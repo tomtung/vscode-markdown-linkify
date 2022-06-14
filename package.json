@@ -1,0 +1,81 @@
+{
+	"name": "vscode-markdown-linkify",
+	"displayName": "Markdown Linkify",
+	"description": "Customize linkification for Markdown preview.",
+	"version": "0.0.1",
+	"icon": "docs/icon.png",
+	"repository": {
+		"url": "https://github.com/tomtung/vscode-markdown-linkify.git"
+	},
+	"engines": {
+		"vscode": "^1.66.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
+	"contributes": {
+		"markdown.markdownItPlugins": true,
+		"configuration": [
+			{
+				"title": "Markdown Linkify",
+				"properties": {
+					"markdown-linkify.rules": {
+						"title": "Rules",
+						"markdownDescription": "Custom linkification rules, each represented by a JSON object with 4 members:\n- `prefix`: the prefix of link strings to be matched, most typically a protocol name that ends with `:` (like `skype:`). The match is automatically ensured to not be preceded by an alphanumeric character.\n- `tail`: an optional regex for matching the **remainder** of the link string immediately following the prefix. The match is automatically ensured to be immediately followed by either space or punctuation. *If not provided, defaults to matching URI-path-like strings.*\n- `url`: an optional string template for the rendered link's URL. *If not provided, defaults to the matched link string, possibly prepended by `http://`.*\n- `text`: an optional string template for the rendered link text. *If not provided, defaults to the matched link string.*\n\nBoth template strings can contain placeholders of matched (sub)strings (`%MATCH%`, `%PREFIX%`, and `%TAIL%`) and backreferences (`$1`, `$2`, ...) to capturing groups from the tail regex.",
+						"editPresentation": "multilineText",
+						"type": "array",
+						"default": [],
+						"items": {
+							"type": "object",
+							"title": "Rule",
+							"properties": {
+								"prefix": {
+									"type": "string",
+									"description": "The prefix of link strings to be matched."
+								},
+								"tail": {
+									"type": "string",
+									"description": "An optional regex for matching the remainder of the link string immediately following the prefix."
+								},
+								"url": {
+									"type": "string",
+									"description": "An optional string template for the URL of the rendered link."
+								},
+								"text": {
+									"type": "string",
+									"description": "An optional string template for the rendered text."
+								}
+							}
+						}
+					}
+				}
+			}
+		]
+	},
+	"main": "./out/extension.js",
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.2.0",
+		"@types/linkify-it": "^3.0.2",
+		"@types/markdown-it": "^12.2.3",
+		"@types/mocha": "^9.1.1",
+		"@types/node": "14.x",
+		"@types/vscode": "^1.66.0",
+		"@typescript-eslint/eslint-plugin": "^5.21.0",
+		"@typescript-eslint/parser": "^5.21.0",
+		"@vscode/test-electron": "^2.1.3",
+		"eslint": "^8.14.0",
+		"glob": "^8.0.1",
+		"linkify-it": "^4.0.1",
+		"mocha": "^9.2.2",
+		"typescript": "^4.6.4"
+	}
+}
