@@ -3,6 +3,7 @@
 	"displayName": "Markdown Linkify",
 	"description": "Customize linkification for Markdown preview.",
 	"version": "0.0.1",
+	"publisher": "tomtung",
 	"icon": "docs/icon.png",
 	"repository": {
 		"url": "https://github.com/tomtung/vscode-markdown-linkify.git"
